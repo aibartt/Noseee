@@ -14,7 +14,7 @@ I decided to try something new and create a project using p5 and ml5 client side
 
 ## Wireframing
 
-![](images/0.png)
+![](images/0.jpg)
 
 ## User Experience & Design
 
