@@ -21,7 +21,7 @@ I decided to try something new and create a project using p5 and ml5 client side
 ![](images/img2.png)
 
 ### User Testing
-<img src=""  width="500"/>
+<img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
 
 ## What I learned from this Assignment?
 
