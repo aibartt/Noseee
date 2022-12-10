@@ -18,7 +18,7 @@ I decided to try something new and create a project using p5 and ml5 client side
 
 ## User Experience & Design
 
-![](images/2.png)
+![](images/img2.png)
 
 ## What I learned from this Assignment?
 
