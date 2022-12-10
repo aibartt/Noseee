@@ -20,6 +20,9 @@ I decided to try something new and create a project using p5 and ml5 client side
 
 ![](images/img2.png)
 
+<img src="https://github.com/aibartt/Noseee/blob/main/2.gif"  width="800"/>
+
+
 ### User Testing
 <img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
 
