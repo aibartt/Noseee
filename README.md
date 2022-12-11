@@ -155,6 +155,28 @@ In my initial version/draft of Final Project, I started by detecting the nose po
 
 WebRTC is an open-source project that allows video, audio, and generic data communication between peers in real-time. I decided to utilize this technology to allow users to establish visual communictation between each other. Because my project is colloborative application I believe that some sort of real-time physical or visual experience is essential.
 
+To establish the WebRTC I utilized the p5live.js and p5livemedia.js and created sketch to utilzile 2 canvas on the same page simultaneously. I also learnt that when using p5LiveMedia you need to specify the adress where users should be connected via appropriate link:
+
+        p.myVideo = createCapture(VIDEO, function (stream) {
+              let p5l = new p5LiveMedia(
+                this,
+                "CAPTURE",
+                stream,
+                "CL_room1",
+                "https://noseee.glitch.me/"
+              );
+              p5l.on("stream", (stream, id) => {
+                p.otherVideo = stream;
+                //otherVideo.id and id are the same and unique identifiers
+                p.otherVideo.hide();
+              });
+            });
+            p.myVideo.muted = true;
+            p.myVideo.hide();
+          };
+
+User Interface of WebRTC Video Connection in my appliaction:
+
 ![](images/3.png)
 
 
