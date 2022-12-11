@@ -182,6 +182,15 @@ User Interface of WebRTC Video Connection in my appliaction:
 
 ## Key Challenges and Solutions
 
+1) After developing the initial version of the project I was able to succesfully connect two users via sockets and WebRTC, and drawing functionality was working but there was serious issues in sending the color and clean commands via sockets. I had to put the color choosing from an array code inside the setup() function where the nosePos variable was declared. After adding it as an additional attribute of nosePos and sending the "data" successfully through the server to all the clients the issue was resolved.
+
+2) Another issue realted to server and client side connections was the clean = reset functionality which should clear the drawing canvas not only for the user but also for the other user. I knew that this function needed to be located outside the setup() and also that emit message should be done. Apparently, I forgot to add the server side code for listening for "clear" message. After fixing this small bug the code was working perfectly.
+
+          //Listen for message named "clear" from client
+          socket.on("clear", ()=>{
+            //Send the clear message to all clients, including this one
+            io.sockets.emit("clear");
+          });
 
 ## Potential next steps
 
