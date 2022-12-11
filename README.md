@@ -153,6 +153,9 @@ In my initial version/draft of Final Project, I started by detecting the nose po
 
 ### WebRTC
 
+WebRTC is an open-source project that allows video, audio, and generic data communication between peers in real-time. I decided to utilize this technology to allow users to establish visual communictation between each other. Because my project is colloborative application I believe that some sort of real-time physical or visual experience is essential.
+
+![](images/3.png)
 
 
 ## Key Challenges and Solutions
