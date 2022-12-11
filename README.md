@@ -194,6 +194,8 @@ User Interface of WebRTC Video Connection in my appliaction:
 
 ## Potential next steps
 
+I would like to continue my introduction to ML5 and PoseNet specifically, and thinking of creating a personal application with multiple games like this accumulated into one app about machine learning. In regards to Noseee, I would like to improve the WebRTC to allow users to speak to each other not just watch the video stream. Also, I would like to create private rooms where friends could join private rooms to colloboarte with each other. One idea for future expansion is creating a survey-like game where one person draws something and the other one needs to guess it.
+
 
 ## Relevant references/resources 
 
