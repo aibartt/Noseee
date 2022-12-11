@@ -122,7 +122,7 @@ I was able to link the video of the user and get the real-time nose positions us
       
 After confirming that the poseNet is getting the pose coordinates through the video, I stored the x and y coordinates of nose position and dist variable for higher accuracy when sketching:
 
-    noseX = lerp(noseX, currPose.nose.x, 0.7);
+        noseX = lerp(noseX, currPose.nose.x, 0.7);
         noseY = lerp(noseY, currPose.nose.y, 0.7);
 
         d = dist(
@@ -132,6 +132,7 @@ After confirming that the poseNet is getting the pose coordinates through the vi
           currPose.rightEye.y
         );
 
+In my initial version/draft of Finakl Project I started by first detecting the nose position and drawing litte red circle to observe the nose movements:
 
 <img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
 
