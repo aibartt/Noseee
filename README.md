@@ -63,3 +63,19 @@ I also received some feedback about using fingers or hand to draw instead of the
 
 
 ## Relevant references/resources 
+
+• [Node JS](https://nodejs.org/en/)
+
+• [Express JS](https://expressjs.com/)
+
+• [Socket.io](https://socket.io/)
+
+• Connections Lab Course Materials
+  https://github.com/MathuraMG/ConnectionsLab-NYUAD
+  
+• https://lensesforsnap.com/nose-draw-snapchat-lens-filter/
+
+• https://editor.p5js.org/bluejaywalk/sketches/5m0HNTBGz
+
+• https://www.youtube.com/watch?v=jmznx0Q1fP0
+
