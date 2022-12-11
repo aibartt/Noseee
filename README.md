@@ -48,7 +48,7 @@ I also received some feedback about using fingers or hand to draw instead of the
 
 ### Socket.io
 
-Sockets was added to the HTTP server that was built over the express app.
+Sockets was added to the HTTP server that was built over the express app. This application uses socket.io for the realtime sharing of information between the server and the clients. Having a drawing element required me to make all the information exchange as realtime as possible, and sockets had a huge role in helping me do so.
 
     // Express is a node module for building HTTP servers
     let express = require("express");
@@ -63,6 +63,48 @@ Sockets was added to the HTTP server that was built over the express app.
 
     let io = require("socket.io");
     io = new io.Server(httpServer);
+    
+Using sockets I was able to receive the realtime nose positions of different players and the color of drawing using nosePos variable, and then send the data to all clients, including this one on the server side.
+
+    if (currPose) {
+    noseX = lerp(noseX, currPose.nose.x, 0.7);
+    noseY = lerp(noseY, currPose.nose.y, 0.7);
+
+    d = dist(
+      currPose.leftEye.x,
+      currPose.leftEye.y,
+      currPose.rightEye.x,
+      currPose.rightEye.y
+    );
+
+    noStroke();
+    colorBox();
+
+    image(canvas2, 0, 0);
+    canvas2.noStroke();
+
+    // users can choose from 5 different colors in the colorbox above the drawing canvas
+    for (i = 0; i < 5; i++) {
+      if (key == i + 1) {
+        currColor = i;
+        canvas2.fill(colors[i]); // searches for the selected color in array
+      }
+    }
+    // after all the needed variables were assigned the nosePos data is emitted to socket
+    let nosePos = { x: noseX, y: noseY, dist: d, color: colors[currColor] };
+
+When the user pressed the spacebar the "data" messegae would be emitted and nosePos will be passed as argument to drawPos() function which will draw the sketch for both clients. Server side code for exchanging data:
+
+    // //Listen for a message named 'data' from this client
+      socket.on("data", function (data) {
+        //checking if data was received
+        console.log("Received: 'data' " + data);
+
+        //Send the data to all clients, including this one
+        //Set the name of the message to be 'data'
+        io.sockets.emit("data", data);
+      });
+
 
 ### ML5 and PoseNet
 
