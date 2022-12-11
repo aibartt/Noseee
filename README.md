@@ -48,7 +48,7 @@ I also received some feedback about using fingers or hand to draw instead of the
 
 ### Socket.io
 
-Sockets was added to the HTTP server that was built over the express app. This application uses socket.io for the realtime sharing of information between the server and the clients. Having a drawing element required me to make all the information exchange as realtime as possible, and sockets had a huge role in helping me do so.
+Sockets was added to the HTTP server that was built over the express app. This application uses socket.io for the realtime sharing of information between the server and the clients. Having a drawing element and visual communictaion required me to make all the information exchange as realtime as possible, and sockets had a huge role in helping me do so.
 
     // Express is a node module for building HTTP servers
     let express = require("express");
@@ -107,6 +107,31 @@ When the user pressed the spacebar the "data" messegae would be emitted and nose
 
 
 ### ML5 and PoseNet
+
+ML5 is a clinet side library that provides access to machine learning algorithms and models in the browser, building on top of TensorFlow.js with no other external dependencies. In my project I utilized the PoseNet a machine learning model that allows for Real-time Human Pose Estimation. 
+
+I was able to link the video of the user and get the real-time nose positions using below code:
+
+      video = createCapture(VIDEO);
+      video.hide();
+
+      //PoseNet is a machine learning model that allows for Real-time Human Pose Estimation.
+      poseNet = ml5.poseNet(video, modelReady);
+      poseNet.flipHorizontal = 1;
+      poseNet.on("pose", gotPoses);
+      
+After confirming that the poseNet is getting the pose coordinates through the video, I stored the x and y coordinates of nose position and dist variable for higher accuracy when sketching:
+
+    noseX = lerp(noseX, currPose.nose.x, 0.7);
+        noseY = lerp(noseY, currPose.nose.y, 0.7);
+
+        d = dist(
+          currPose.leftEye.x,
+          currPose.leftEye.y,
+          currPose.rightEye.x,
+          currPose.rightEye.y
+        );
+
 
 <img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
 
