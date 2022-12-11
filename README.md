@@ -93,7 +93,7 @@ Using sockets I was able to receive the realtime nose positions of different pla
     // after all the needed variables were assigned the nosePos data is emitted to socket
     let nosePos = { x: noseX, y: noseY, dist: d, color: colors[currColor] };
 
-When the user pressed the spacebar the "data" messegae would be emitted and nosePos will be passed as argument to drawPos() function which will draw the sketch for both clients. Server side code for exchanging data:
+When the user pressed the spacebar the "data" message would be emitted and nosePos will be passed as argument to drawPos() function which will draw the sketch for both clients. Similarly, to clean the drawing space for both clients I seperately emitted "clean" message when the "c" keyboard was pressed. Server side code for exchanging data:
 
     // //Listen for a message named 'data' from this client
       socket.on("data", function (data) {
@@ -104,13 +104,17 @@ When the user pressed the spacebar the "data" messegae would be emitted and nose
         //Set the name of the message to be 'data'
         io.sockets.emit("data", data);
       });
+      
+      //Listen for message named "clear" from client
+      socket.on("clear", ()=>{
+      //Send the clear message to all clients, including this one
+      io.sockets.emit("clear");
+      });
 
 
 ### ML5 and PoseNet
 
-ML5 is a clinet side library that provides access to machine learning algorithms and models in the browser, building on top of TensorFlow.js with no other external dependencies. In my project I utilized the PoseNet a machine learning model that allows for Real-time Human Pose Estimation. 
-
-I was able to link the video of the user and get the real-time nose positions using below code:
+ML5 is a client side library that provides access to machine learning algorithms and models in the browser, building on top of TensorFlow.js with no other external dependencies. In my project I utilized the PoseNet a machine learning model that allows for Real-time Human Pose Estimation. I was able to link the video of the user and get the real-time nose positions using below code:
 
       video = createCapture(VIDEO);
       video.hide();
@@ -131,8 +135,19 @@ After confirming that the poseNet is getting the pose coordinates through the vi
           currPose.rightEye.x,
           currPose.rightEye.y
         );
+        
+After receiving the nosePos I put an if statement to check if user pressed spacebar, if yes then I called function drawPos(nosePos) which draws the sketch based on nose movements for both users:
 
-In my initial version/draft of Finakl Project I started by first detecting the nose position and drawing litte red circle to observe the nose movements:
+        // drawing the sketch using nose position of the user and the color selected
+        function drawPos(nosePos) {
+          image(canvas2, 0, 0);
+          canvas2.noStroke();
+          canvas2.fill(nosePos.color);
+          canvas2.ellipse(nosePos.x, nosePos.y, nosePos.dist * 0.2);
+          noStroke();
+        }
+
+In my initial version/draft of Final Project, I started by detecting the nose position and drawing litte red circle to observe the nose movements adding up additional functionalities one by one:
 
 <img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
 
