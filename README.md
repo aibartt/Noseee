@@ -10,7 +10,7 @@ Noseee is an online real-time collaborative application where people can create 
 
 ## Idea, Concept and Inspiration
 
-I decided to try something new and create a project using p5 and ml5 client side javascript libraries. The idea was to create a colloborative application where different users could contribute in some way to the common form of art or composition. After some brainstorming I thought that creating an app which stimulates some physical activity would be a good idea. But dragging the mouse is not a big deal, right? I need something more interesting and potentially useful. As a CS major I use my laptop for more than 10 hours every day. Unsurprisingly, I started to experience neck and back pain because of countless hours staring at a computer screen. Naturally, you will begin to experience fatigue staying in the same position for hours, which then leads to bad posture and a strain on your cervical vertebrae. This is the cause of upper back and neck pain, sore shoulders and even lumbar pain in your lower back. Millions of other people acrooss the world experience the same symptoms but not everyone can notice it and take decisive actions to confront it. That's how I came acrooss the idea of using the users's nose position to draw on this application. Noseee will not only be an entertaining break for users but will also stimulate their neck muscles with physical activity.
+I decided to try something new and create a project using p5 and ml5 client side javascript libraries. The idea was to create a colloborative application where different users could contribute in some way to the common form of art or composition. After some brainstorming I thought that creating an app which stimulates some physical activity would be a good idea. But dragging the mouse is not a big deal, right? I need something more interesting and potentially useful. As a CS major I use my laptop for more than 10 hours every day. Unsurprisingly, I started to experience neck and back pain because of countless hours staring at a computer screen. Naturally, you will begin to experience fatigue staying in the same position for hours, which then leads to bad posture and a strain on your cervical vertebrae. This is the cause of upper back and neck pain, sore shoulders and even lumbar pain in your lower back. Millions of other people across the world experience the same symptoms but not everyone can notice it and take decisive actions to confront it. That's how I came across the idea of using the users's nose position to draw on this application. Noseee will not only be an entertaining break for users but will also stimulate their neck muscles with physical activity.
 
 ## Wireframing
 I created a simple wireframe of the website before strating the development process.
@@ -24,7 +24,7 @@ User Interface of my appliaction is pretty straightforward: header, short descri
 
 ![](images/img2.png)
 
-Users can choose the color of the  brush by clicking numbers on keyboard and start drawing by holding spacebar. You can draw almost anything with this app! You can cooloborate with your friend and come up with an abstract form of composition. If you want to clear the drawing canvas just press "c" on the keyboard it will automatically clean up drawing space for both users. 
+Users can choose the color of the  brush by clicking numbers on keyboard and start drawing by holding spacebar. You can draw almost anything with this app! You can collaborate with your friend and come up with an abstract form of composition. If you want to clear the drawing canvas just press "c" on the keyboard it will automatically clean up drawing space for both users. 
 
 ### Below is the sample of UI&UX:
 
@@ -34,7 +34,7 @@ Users can choose the color of the  brush by clicking numbers on keyboard and sta
 ### User Testing
 During user testing in class, I received various feedback from my classmates, and it was really helpful when making some design and development decisions.
 Initially, I did not have any user control for drawing, it was drawing all the time. But I recieved a feedback about this and decided to add functionality to utilize the spacebar for drawing. 
-Hasibur pointed out a bug where if the user goes out the frame it draws random lines, it was  due to not confirming that poseNet is getting the poses of the user. It was succesfully resolved by adding this code for confirming if the poseNet is getting the pose coordinates through the video.
+Hasibur pointed out a bug where if the user goes out of the frame it draws random lines, it was  due to not confirming that poseNet is getting the poses of the user. It was successfully resolved by adding this code for confirming if the poseNet is getting the pose coordinates through the video.
 
     function gotPoses(poses) {
       if (poses.length > 0) {
@@ -42,7 +42,7 @@ Hasibur pointed out a bug where if the user goes out the frame it draws random l
       }
     }
 
-I also received some feedback about using fingers or hand to draw instead of the nose movements. But because I wanted to develop an application that is potentially useful. I decided to keep my initial idea of stimulatating user's neck muscles with physical activity.
+I also received some feedback about using finger or hand to draw instead of the nose movements. But because I wanted to develop an application that is potentially useful. I decided to keep my initial idea of stimulating user's neck muscles with physical activity.
 
 ## Technical Design and What I learned from this Final Project
 
@@ -64,7 +64,7 @@ Sockets was added to the HTTP server that was built over the express app. This a
     let io = require("socket.io");
     io = new io.Server(httpServer);
     
-Using sockets I was able to receive the realtime nose positions of different players and the color of drawing using nosePos variable, and then send the data to all clients, including this one on the server side.
+Using sockets I was able to receive the realtime nose positions of different players and the selected color using nosePos variable, and then send the data to all clients, including itself on the server side.
 
     if (currPose) {
     noseX = lerp(noseX, currPose.nose.x, 0.7);
@@ -153,9 +153,9 @@ In my initial version/draft of Final Project, I started by detecting the nose po
 
 ### WebRTC
 
-WebRTC is an open-source project that allows video, audio, and generic data communication between peers in real-time. I decided to utilize this technology to allow users to establish visual communictation between each other. Because my project is colloborative application I believe that some sort of real-time physical or visual experience is essential.
+WebRTC is an open-source project that allows video, audio, and generic data communication between peers in real-time. I decided to utilize this technology to allow users to establish visual communictation between each other. Because my project is collaborative application I believe that some sort of real-time physical or visual experience is essential.
 
-To establish the WebRTC I utilized the p5live.js and p5livemedia.js and created sketch to utilzile 2 canvas on the same page simultaneously. I also learnt that when using p5LiveMedia you need to specify the adress where users should be connected via appropriate link:
+To establish the WebRTC Video Streaming, I utilized the p5live.js and p5livemedia.js and created sketch to utilzile 2 canvas on the same page simultaneously. I also learnt that when using p5LiveMedia you need to specify the adress where users should be connected via appropriate link:
 
         p.myVideo = createCapture(VIDEO, function (stream) {
               let p5l = new p5LiveMedia(
@@ -163,7 +163,7 @@ To establish the WebRTC I utilized the p5live.js and p5livemedia.js and created 
                 "CAPTURE",
                 stream,
                 "CL_room1",
-                "https://noseee.glitch.me/"
+                "https://noseee.glitch.me/" //appropriate link
               );
               p5l.on("stream", (stream, id) => {
                 p.otherVideo = stream;
@@ -182,9 +182,9 @@ User Interface of WebRTC Video Connection in my appliaction:
 
 ## Key Challenges and Solutions
 
-1) After developing the initial version of the project I was able to succesfully connect two users via sockets and WebRTC, and drawing functionality was working but there was serious issues in sending the color and clean commands via sockets. I had to put the color choosing from an array code inside the setup() function where the nosePos variable was declared. After adding it as an additional attribute of nosePos and sending the "data" successfully through the server to all the clients the issue was resolved.
+1) After developing the initial version of the project I was able to successfully connect two users via Sockets and WebRTC, and drawing functionality was working but there was some serious issues in sending the color and clean commands via sockets. I had to put the color choosing from an array code inside the setup() function, where the nosePos variable was declared. After adding it as an additional attribute of nosePos and sending the "data" successfully through the server to all the clients the issue was resolved.
 
-2) Another issue realted to server and client side connections was the clean = reset functionality which should clear the drawing canvas not only for the user but also for the other user. I knew that this function needed to be located outside the setup() and also that emit message should be done. Apparently, I forgot to add the server side code for listening for "clear" message. After fixing this small bug the code was working perfectly.
+2) Another issue realted to server and client side connections was the clean = reset functionality which should clear the drawing canvas not only for the user but also for the other user. I knew that this function needed to be located outside the setup() and also that emit message should be sent. Apparently, I forgot to add the server side code for listening for "clear" message. After fixing this small bug the code was working perfectly.
 
           //Listen for message named "clear" from client
           socket.on("clear", ()=>{
@@ -194,7 +194,7 @@ User Interface of WebRTC Video Connection in my appliaction:
 
 ## Potential next steps
 
-I would like to continue my introduction to ML5 and PoseNet specifically, and thinking of creating a personal application with multiple games like this accumulated into one app about machine learning. In regards to Noseee, I would like to improve the WebRTC to allow users to speak to each other not just watch the video stream. Also, I would like to create private rooms where friends could join private rooms to colloboarte with each other. One idea for future expansion is creating a survey-like game where one person draws something and the other one needs to guess it.
+I would like to continue my journey to ML5 and PoseNet specifically, and thinking of creating a personal application with multiple games of this type accumulated into one app about machine learning. In regards to Noseee, I would like to improve the WebRTC to allow users to speak to each other, not just watch the video stream. Also, I would like to create private rooms where friends could join private rooms to collaborate with each other. One idea for future expansion is creating a survey-like game where one person draws something and the other one needs to guess it.
 
 
 ## Relevant references/resources 
