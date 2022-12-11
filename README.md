@@ -48,6 +48,22 @@ I also received some feedback about using fingers or hand to draw instead of the
 
 ### Socket.io
 
+Sockets was added to the HTTP server that was built over the express app.
+
+    // Express is a node module for building HTTP servers
+    let express = require("express");
+    let http = require("http");
+    let app = express();
+
+    // We pass in the Express object and the options object
+    let httpServer = http.createServer(app);
+
+    // WebSocket Portion
+    // WebSockets work with the HTTP server
+
+    let io = require("socket.io");
+    io = new io.Server(httpServer);
+
 ### ML5 and PoseNet
 
 <img src="https://github.com/aibartt/Noseee/blob/main/1.gif"  width="800"/>
