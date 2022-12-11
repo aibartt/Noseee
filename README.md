@@ -2,6 +2,7 @@
 
 
 Working Link: https://noseee.glitch.me/
+Presentation Link: https://docs.google.com/presentation/d/1DXTghxZiVpyEJUIJzDs3pPspVz1BhG2Na4hCEOvmmDg/edit#slide=id.p
 
 ## Project Description
 
