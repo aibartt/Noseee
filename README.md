@@ -201,11 +201,11 @@ I would like to continue my journey to ML5 and PoseNet specifically, and thinkin
 
 ## IM Showcase (aka Real-world Testing)
 
-![](images/a.png)
+![](images/a.jpeg)
 
-![](images/b.png)
+![](images/b.jpeg)
 
-![](images/c.png)
+![](images/c.jpeg)
 
 ## Relevant references/resources 
 
